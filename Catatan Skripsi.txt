@@ -1,0 +1,10 @@
+==== SKRIPSI ====
+List Project
+
+- DB Relasi
+- Framework in Use
+- Template in Use
+- Auth Login
+- Master Data
+- Transaksi
+- Report
