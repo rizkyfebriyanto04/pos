@@ -28,9 +28,12 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
+Route::delete('delete/{id}', [UserController::class, 'delete'])->name('register.delete');
 
 Route::get('kategori', [MasterProdukController::class, 'kategori'])->name('kategori');
 Route::post('kategori', [MasterProdukController::class, 'kategori_aksi'])->name('kategori.action');
+Route::delete('delete/{id}', [MasterProdukController::class, 'delete'])->name('kategori.delete');
+
 
 Route::get('produk', [MasterProdukController::class, 'produk'])->name('produk');
 Route::post('produk', [MasterProdukController::class, 'produk_aksi'])->name('produk.action');

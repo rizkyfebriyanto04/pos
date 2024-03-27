@@ -63,7 +63,7 @@
             <div class="app-brand justify-content-center mt-5">
               <a href="index.html" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
-                  <span style="color: #1d8bec">
+                  <span style="color: #435ebe">
                     <svg width="30" height="24" viewBox="0 0 250 196" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         fill-rule="evenodd"
@@ -176,7 +176,7 @@
                   </a> -->
                 </div>
                 <div class="mb-3">
-                  <button type="submit" class="btn btn-info d-grid w-100" type="submit">Sign in</button>
+                  <button type="submit" class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
                 </div>
               </form>
 

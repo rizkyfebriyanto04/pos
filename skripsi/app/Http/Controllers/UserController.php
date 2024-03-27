@@ -6,12 +6,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function register()
     {
         $data['title'] = 'Register';
+        $data['data'] = DB::table('users')->get();
+        // return $data['data'];
         return view('registrasi.index', $data);
     }
 
@@ -33,7 +36,7 @@ class UserController extends Controller
         ]);
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Registration success. Please login!');
+        return redirect()->route('register')->with('success', 'Akun Berhasil Di Tambahkan');
     }
 
 
@@ -85,4 +88,10 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function delete($id){
+        DB::table('users')->where('id', $id)->delete();
+        return redirect('register')->with('status', 'Data Berhasil DiHapus');
+    }
+
 }
