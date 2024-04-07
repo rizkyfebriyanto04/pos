@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasterProdukController;
+use App\Http\Controllers\PenjualanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +33,14 @@ Route::delete('delete/{id}', [UserController::class, 'delete'])->name('register.
 
 Route::get('kategori', [MasterProdukController::class, 'kategori'])->name('kategori');
 Route::post('kategori', [MasterProdukController::class, 'kategori_aksi'])->name('kategori.action');
-Route::delete('delete/{id}', [MasterProdukController::class, 'delete'])->name('kategori.delete');
-
+Route::post('delete-kategori/{id}', [MasterProdukController::class, 'hapus'])->name('kategori.hapus');
 
 Route::get('produk', [MasterProdukController::class, 'produk'])->name('produk');
 Route::post('produk', [MasterProdukController::class, 'produk_aksi'])->name('produk.action');
+Route::post('delete-produk/{id}', [MasterProdukController::class, 'hapusproduk'])->name('produk.hapusproduk');
+
+Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan');
+Route::post('transaksi', [PenjualanController::class, 'transaksi'])->name('penjualan.add');
+
+
+Route::get('cetakbill/', [PenjualanController::class, 'cetakbill'])->name('penjualan.cetakbill');

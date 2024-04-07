@@ -16,7 +16,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Master Kategori</h4>
                         @if (session('success'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success" id="success-alert">
                                 {{ session('success') }}
                             </div>
                         @endif
@@ -36,9 +36,9 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $d->namakategori }}</td>
                                     <td>
-                                        <form id="delete-form-{{ $d->id }}" action="{{ route('kategori.delete', $d->id) }}" method="POST" style="display: inline;">
+                                        <form id="delete-form-{{ $d->id }}" action="{{ route('kategori.hapus', $d->id) }}" method="POST" style="display: inline;">
                                             @csrf
-                                            @method('DELETE')
+                                            @method('POST')
                                             <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" style="border: none; background-color: transparent;">
                                                 <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash"></i>
                                             </button>
@@ -91,4 +91,13 @@
         </div>
     </div>
     </section>
+    <script>
+        // Ambil elemen alert
+        var alertBox = document.getElementById('success-alert');
+
+        // Sembunyikan elemen alert setelah 3 detik
+        setTimeout(function() {
+            alertBox.style.display = 'none';
+        }, 3000);
+    </script>
 @endsection

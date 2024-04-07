@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/app.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/app-dark.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/iconly.css'}}">
-    <link rel="stylesheet" href="{{ 'assets/extensions/@fortawesome/fontawesome-free/css/all.min.css'}}">
+    <link rel="stylesheet" href="{{ 'dist/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css'}}">
+    <link rel="stylesheet" href="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.css'}}">
+
 </head>
 
 <body>
@@ -57,7 +59,8 @@
     <script src="{{ 'dist/assets/compiled/js/app.js'}}"></script>
     <script src="{{ 'dist/assets/extensions/apexcharts/apexcharts.min.js'}}"></script>
     <script src="{{ 'dist/assets/static/js/pages/dashboard.js'}}"></script>
-
+    <script src="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.js'}}"></script>
+    <script src="{{ 'dist/assets/static/js/pages/date-picker.js'}}"></script>
 </body>
 
 </html>

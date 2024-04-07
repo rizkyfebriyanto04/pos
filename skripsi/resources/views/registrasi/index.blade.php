@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Registrasi</h4>
                         @if (session('success'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success" id="success-alert">
                                 {{ session('success') }}
                             </div>
                         @endif
@@ -94,7 +94,7 @@
                         </div>
                         <label for="passwordconfirm">Role <span class="text-danger">*</span></label>
                         <div class="form-group">
-                            <select name="role" class="btn btn-primary dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            <select class="form-control" name="role" class="btn btn-primary dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                                 <option value="" selected>--Pilih--</option>
                                 <option value="admin">admin</option>
                                 <option value="kasir">kasir</option>
@@ -118,5 +118,15 @@
         </div>
     </div>
     </section>
+
+    <script>
+        // Ambil elemen alert
+        var alertBox = document.getElementById('success-alert');
+
+        // Sembunyikan elemen alert setelah 3 detik
+        setTimeout(function() {
+            alertBox.style.display = 'none';
+        }, 3000);
+    </script>
     <!-- Table head options end -->
 @endsection

@@ -45,7 +45,22 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    <a href="#" class="submenu-link">Penjualan</a>
+                    <a href="{{ route('penjualan') }}" class="submenu-link">Penjualan</a>
+                </li>
+            </ul>
+        </li>
+        <li
+            class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-text-fill"></i>
+                <span>Laporan</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item  ">
+                    <a href="{{ route('penjualan') }}" class="submenu-link">Penjualan</a>
+                </li>
+                <li class="submenu-item  ">
+                    <a href="{{ route('penjualan') }}" class="submenu-link">Stok Kadaluarsa</a>
                 </li>
             </ul>
         </li>
