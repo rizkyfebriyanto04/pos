@@ -57,11 +57,11 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    <a href="{{ route('penjualan') }}" class="submenu-link">Penjualan</a>
+                    <a href="{{ route('laporan') }}" class="submenu-link">Penjualan</a>
                 </li>
-                <li class="submenu-item  ">
+                {{-- <li class="submenu-item  ">
                     <a href="{{ route('penjualan') }}" class="submenu-link">Stok Kadaluarsa</a>
-                </li>
+                </li> --}}
             </ul>
         </li>
     </ul>

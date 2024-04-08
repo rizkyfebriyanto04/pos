@@ -16,7 +16,7 @@ var optionsProfileVisit = {
   series: [
     {
       name: "sales",
-      data: [9, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20],
+      data: <?php echo json_encode($dataPenjualan); ?>
     },
   ],
   colors: "#435ebe",
@@ -131,9 +131,12 @@ let optionsIndonesia = {
 }
 
 var chartProfileVisit = new ApexCharts(
-  document.querySelector("#chart-profile-visit"),
-  optionsProfileVisit
-)
+    document.querySelector("#chart-profile-visit"),
+    optionsProfileVisit
+  );
+
+chartProfileVisit.render();
+
 var chartVisitorsProfile = new ApexCharts(
   document.getElementById("chart-visitors-profile"),
   optionsVisitorsProfile

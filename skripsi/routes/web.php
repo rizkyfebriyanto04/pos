@@ -44,3 +44,4 @@ Route::post('transaksi', [PenjualanController::class, 'transaksi'])->name('penju
 
 
 Route::get('cetakbill/', [PenjualanController::class, 'cetakbill'])->name('penjualan.cetakbill');
+Route::get('laporan', [PenjualanController::class, 'laporan'])->name('laporan');

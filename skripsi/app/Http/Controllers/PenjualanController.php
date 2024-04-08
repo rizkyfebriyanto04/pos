@@ -9,34 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class PenjualanController extends Controller
 {
-    // private function generateNoInvoice() {
-    //     $tanggal = Carbon::now();
-    //     $tahun = $tanggal->format('Y');
-    //     $bulan = $tanggal->format('m');
-    //     $tanggal = $tanggal->format('d');
-
-    //     $last_invoice_number = Penjualan::orderBy('created_at', 'desc')->pluck('no_penjualan')->first();
-    //     $next_invoice_number = ($last_invoice_number ? (int)substr($last_invoice_number, -4) + 1 : 1);
-    //     $next_invoice_number_padded = str_pad($next_invoice_number, 4, '0', STR_PAD_LEFT);
-    //     $no_invoice = $tahun . $bulan . $tanggal . $next_invoice_number_padded;
-    //     return $no_invoice;
-    // }
-    private function generateNoInvoice() {
-        $tanggal = Carbon::now();
-        $tahun = $tanggal->format('Y');
-        $bulan = $tanggal->format('m');
-        $tanggal = $tanggal->format('d');
-
-        $last_invoice_number = Penjualan::orderBy('created_at', 'desc')->pluck('no_penjualan')->first();
-
-        $next_invoice_number = ($last_invoice_number ? (int)substr($last_invoice_number, -4) + 1 : 1);
-
-        $next_invoice_number_padded = str_pad($next_invoice_number, 4, '0', STR_PAD_LEFT);
-
-        $no_invoice = $tahun . $bulan . $tanggal . $next_invoice_number_padded;
-
-        return $no_invoice;
-    }
 
 
     public function index(){
@@ -44,13 +16,13 @@ class PenjualanController extends Controller
         $data = DB::table('produk_m as pm')
         ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
         ->select('km.*','pm.*','pm.id as pmid','pm.tgl_kadaluarsa')
-        ->where('pm.statusenabled', 0)
-        ->where('km.statusenabled', 0)
+        ->where('pm.statusenabled', 1)
+        ->where('km.statusenabled', 1)
+        ->where('pm.stok','<>',0)
         ->get();
         // return $data;
-        $no_invoice = $this->generateNoInvoice();
 
-        return view('penjualan.index',compact('title','no_invoice','data'));
+        return view('penjualan.index',compact('title','data'));
     }
 
     public function transaksi(Request $request){
@@ -101,11 +73,28 @@ class PenjualanController extends Controller
             $data = DB::table('penjualan_t as pj')
             ->leftJoin('produk_m as pm', 'pm.id','=','pj.objectprodukfk')
             ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
-            ->select('km.*','pm.*','pm.id as pmid','pm.tgl_kadaluarsa','pj.*')
+            ->select('km.namakategori','pm.namaproduk','pm.tgl_kadaluarsa','pj.*')
             ->where('pj.statusenabled', 1)
             ->where('pj.no_penjualan',$request['noinvoice'])
             ->get();
             // dd( $data);
             return view('cetakan.cetakanbill',compact('title','data'));
+    }
+
+    public function laporan(Request $request){
+        $title = 'Laporan Penjualan - My Pos App';
+
+        $tglawal = $request->input('tglawal', Carbon::today()->toDateString());
+        $tglakhir = $request->input('tglakhir', Carbon::today()->toDateString());
+
+        $data = DB::table('penjualan_t as pj')
+            ->leftJoin('produk_m as pm', 'pm.id','=','pj.objectprodukfk')
+            ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
+            ->select('km.*','pm.*','pm.id as pmid','pj.*')
+            ->where('pj.statusenabled', 1)
+            ->whereBetween('pj.tanggal_jual', [$tglawal, $tglakhir])
+            ->get();
+
+        return view('laporan.index',compact('title','data'));
     }
 }
